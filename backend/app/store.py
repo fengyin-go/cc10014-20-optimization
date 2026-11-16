@@ -4,19 +4,31 @@
 """
 from __future__ import annotations
 
+import copy
 from typing import Any
 
 from app.seed import SEED_ROWS
 
+# 去重归并链路的内部表：不算是独立业务模块，不出现在运营概览里，
+# 但可以通过 Store.rows() 正常读写。
+INTERNAL_TABLES = frozenset({
+    "dedup_source",
+    "dedup_dataset",
+    "dedup_group",
+    "dedup_registry",
+})
+
 
 class Store:
     def __init__(self) -> None:
+        # 深拷贝：种子数据里有嵌套列表/字典（如被归并行号、结果快照），
+        # 浅拷贝会让多个 Store 实例共享同一份可变对象，归并结果互相污染。
         self._tables: dict[str, list[dict[str, Any]]] = {
-            name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
+            name: [copy.deepcopy(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
 
     def module_names(self) -> list[str]:
-        return sorted(self._tables)
+        return sorted(name for name in self._tables if name not in INTERNAL_TABLES)
 
     def rows(self, module: str) -> list[dict[str, Any]]:
         return self._tables.setdefault(module, [])

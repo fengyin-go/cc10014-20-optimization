@@ -16,12 +16,13 @@ import SchemaView from './views/schema'
 import DatasourceView from './views/datasource'
 import QueryView from './views/query'
 import CleanseView from './views/cleanse'
+import DedupView from './views/dedup'
 import LogView from './views/log'
 import MockView from './views/mock'
 import BackupView from './views/backup'
 import NotifyView from './views/notify'
 
-const navItems = [{ label: "运营概览", path: "/" }, { label: "服务注册", path: "/service" }, { label: "查询编排", path: "/flow" }, { label: "接口限流", path: "/ratelimit" }, { label: "鉴权管理", path: "/auth" }, { label: "服务监控", path: "/monitor" }, { label: "消费方登记", path: "/consumer" }, { label: "版本管理", path: "/version" }, { label: "结果缓存", path: "/cache" }, { label: "响应转换", path: "/transform" }, { label: "网关路由", path: "/gateway" }, { label: "接口文档", path: "/schema" }, { label: "数据源配置", path: "/datasource" }, { label: "数据查询", path: "/query" }, { label: "数据清洗", path: "/cleanse" }, { label: "调用日志", path: "/log" }, { label: "模拟数据", path: "/mock" }, { label: "数据备份", path: "/backup" }, { label: "事件通知", path: "/notify" }]
+const navItems = [{ label: "运营概览", path: "/" }, { label: "服务注册", path: "/service" }, { label: "查询编排", path: "/flow" }, { label: "接口限流", path: "/ratelimit" }, { label: "鉴权管理", path: "/auth" }, { label: "服务监控", path: "/monitor" }, { label: "消费方登记", path: "/consumer" }, { label: "版本管理", path: "/version" }, { label: "结果缓存", path: "/cache" }, { label: "响应转换", path: "/transform" }, { label: "网关路由", path: "/gateway" }, { label: "接口文档", path: "/schema" }, { label: "数据源配置", path: "/datasource" }, { label: "数据查询", path: "/query" }, { label: "数据清洗", path: "/cleanse" }, { label: "去重归并", path: "/dedup" }, { label: "调用日志", path: "/log" }, { label: "模拟数据", path: "/mock" }, { label: "数据备份", path: "/backup" }, { label: "事件通知", path: "/notify" }]
 
 export default function App() {
   const [operator] = useState('值班管理员')
@@ -59,6 +60,7 @@ export default function App() {
           <Route path="/datasource" element={<DatasourceView />} />
           <Route path="/query" element={<QueryView />} />
           <Route path="/cleanse" element={<CleanseView />} />
+          <Route path="/dedup" element={<DedupView />} />
           <Route path="/log" element={<LogView />} />
           <Route path="/mock" element={<MockView />} />
           <Route path="/backup" element={<BackupView />} />

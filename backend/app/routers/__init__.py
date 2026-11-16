@@ -20,9 +20,10 @@ from app.routers import schema as router_schema
 from app.routers import datasource as router_datasource
 from app.routers import query as router_query
 from app.routers import cleanse as router_cleanse
+from app.routers import dedup as router_dedup
 from app.routers import log as router_log
 from app.routers import mock as router_mock
 from app.routers import backup as router_backup
 from app.routers import notify as router_notify
 
-ROUTERS = [router_service, router_flow, router_ratelimit, router_auth, router_monitor, router_consumer, router_version, router_cache, router_transform, router_gateway, router_schema, router_datasource, router_query, router_cleanse, router_log, router_mock, router_backup, router_notify]
+ROUTERS = [router_service, router_flow, router_ratelimit, router_auth, router_monitor, router_consumer, router_version, router_cache, router_transform, router_gateway, router_schema, router_datasource, router_query, router_cleanse, router_dedup, router_log, router_mock, router_backup, router_notify]
